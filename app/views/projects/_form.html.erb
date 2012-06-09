@@ -1,0 +1,20 @@
+<%=
+semantic_form_for @project, :html => { :class => "filter_form consolidated_form" }, :builder => ActiveAdmin::FormBuilder do |f| 
+  f.inputs "Project Information", :class => "inputs consolidated" do 
+		f.input :number, as: :string, hint: "This is a unique number identifying the project for your records and is not editable after a project is created", input_html: { disabled: !@project.new_record? && @project.number.present? }
+    f.input :name, hint: "The project number and client name will prefix this name wherever the project is used"
+    f.input :start_date, :label => "Start Date", :as => :datepicker, :wrapper_html => { :class => "filter_form_field filter_date_range field-row" }
+    f.input :end_date, :label => "End Date", :as => :datepicker, :wrapper_html => { :class => "filter_form_field filter_date_range field-row" }
+		f.input :client, :wrapper_html => { :class => 'cleared' }, :collection => Client.all
+		f.input :description, :input_html => { class: :ckeditor }
+  end 
+	f.inputs "Internal / Accounting" do
+		f.input :hourly_rate, :hint => "All time assigned to tickets for this project will use this hourly rate. Defaults to the hourly rate dictated to for the client, if left empty.", label: "Hourly Rate", as: :string
+		f.input :product_owner, :label => "Product Owner", :required => true, :collection => AdminUser.admin, hint: "The product owner is responsible for overseeing this project and will see this project on his/her dashboard."
+	end
+	f.inputs "Members" do
+		f.input :members, :as => :check_boxes, :collection => AdminUser.all, hint: "Project members can access the project and all its resources and may be assigned tickets."
+	end
+  f.buttons 
+end 
+%>

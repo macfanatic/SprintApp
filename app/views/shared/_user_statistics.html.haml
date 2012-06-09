@@ -1,0 +1,53 @@
+- @stats = { today: {}, this_week: {}, last_week: {}, this_month: {}, last_month: {}, this_year: {}}
+
+- billable_scope = TicketComment.billable.created_by(user)
+- @stats[:today][:billable] = billable_scope.today.sum(:time)
+- @stats[:this_week][:billable] = billable_scope.this_week.sum(:time)
+- @stats[:last_week][:billable] = billable_scope.last_week.sum(:time) 
+- @stats[:this_month][:billable] = billable_scope.this_month.sum(:time) 
+- @stats[:last_month][:billable] = billable_scope.last_month.sum(:time) 
+- @stats[:this_year][:billable] = billable_scope.this_year.sum(:time) 
+
+- worked_scope = TicketComment.created_by(user)
+- @stats[:today][:worked] = worked_scope.today.sum(:time)
+- @stats[:this_week][:worked] = worked_scope.this_week.sum(:time)
+- @stats[:last_week][:worked] = worked_scope.last_week.sum(:time)
+- @stats[:this_month][:worked] = worked_scope.this_month.sum(:time)
+- @stats[:last_month][:worked] = worked_scope.last_month.sum(:time)
+- @stats[:this_year][:worked] = worked_scope.this_year.sum(:time)
+
+%table
+	%thead
+		%tr
+			%th Time Period
+			%th Billable Hours
+			%th Hours Worked
+	%tr
+		%td(class="bold") Today
+		%td= number_to_human @stats[:today][:billable]
+		%td= number_to_human @stats[:today][:worked]
+	%tr
+		%td(class="bold") This Week
+		%td= number_to_human @stats[:this_week][:billable]
+		%td= number_to_human @stats[:this_week][:worked]
+	%tr
+		%td(class="bold") Last Week
+		%td= number_to_human @stats[:last_week][:billable]
+		%td= number_to_human @stats[:last_week][:worked]
+	%tr
+		%td(class="bold") This Month
+		%td= number_to_human @stats[:this_month][:billable]
+		%td= number_to_human @stats[:this_month][:worked]	
+	%tr
+		%td(class="bold") Last Month
+		%td= number_to_human @stats[:last_month][:billable]
+		%td= number_to_human @stats[:last_month][:worked]
+	%tr
+		%td(class="bold") This Year
+		%td= number_to_human @stats[:this_year][:billable]
+		%td= number_to_human @stats[:this_year][:worked]
+		
+%p
+	%strong
+		%em
+			This information is for internal purposes only.

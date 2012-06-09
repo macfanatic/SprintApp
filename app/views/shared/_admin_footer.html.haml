@@ -1,0 +1,17 @@
+#site_footer
+	#footerNav
+		%ul
+			%li= link_to "Dashboard", dashboard_path
+			%li |
+			%li= link_to "Calendar", calendar_path
+			%li |
+			%li= link_to "Current Sprint", sprint_path
+			%li |
+			%li= link_to "Projects", projects_path
+			%li |
+			%li= link_to "My Account", profile_admin_users_path
+			%li |
+			%li= link_to "Logout", destroy_admin_user_session_path
+		= form_tag switch_projects_path do
+			= label_tag :id, "Switch Project:"
+			= select_tag :id, options_from_collection_for_select(Project.active.accessible_by(current_ability).includes(:client).reorder("lower(clients.name) asc, lower(projects.name) asc"), :url, :switcher_name, (@project.url rescue nil)), onchange: "$(this).closest('form').submit();"

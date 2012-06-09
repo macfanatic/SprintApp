@@ -1,0 +1,28 @@
+= form_tag edit_multiple_project_tickets_path(@project) do
+	- @ticket_ids.each do |id|
+		= hidden_field_tag "collection[]", id
+	%fieldset.inputs
+		%legend 
+			%span Editing Multiple Tickets
+		%ol
+			%li.input
+				= label_tag :status, "Status"
+				= select_tag :status, options_from_collection_for_select(@statuses, :id, :name), prompt: @prompt
+			%li.input
+				= label_tag :assignee, "Assignee"
+				= select_tag :assignee, options_from_collection_for_select(@project.members.sorted, :id, :full_name), prompt: @prompt
+			%li.input
+				= label_tag :tracker, "Tracker"
+				= select_tag :tracker, options_from_collection_for_select(@categories, :id, :name), prompt: @prompt
+			%li.input
+				= label_tag :priority, "Priority"
+				= select_tag :priority, options_from_collection_for_select(@priorities, :id, :name), prompt: @prompt
+			%li.input
+				= label_tag :billable
+				= select_tag :billable, options_for_select({Billable: true, Nonbillable: false}), prompt: @prompt
+	%fieldset.buttons
+		%ol
+			%li.commit.button
+				= submit_tag "Update Tickets", disable_with: "Saving..."
+			%li.cancel
+				= link_to "Cancel", collection_path

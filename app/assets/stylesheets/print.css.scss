@@ -1,0 +1,62 @@
+.noprint {
+	display:none !important;
+}
+
+.print {
+	display:inherit !important;
+}
+
+#main_content {
+	margin-right:0px !important;
+}
+
+#title_bar, #header, #site_footer, #sidebar, .fc-header-right, #detail_nav {
+	display:none !important;
+}
+
+#active_admin_content {
+	position:absolute;
+	left:0;
+	top:0;
+}
+
+#active_admin_content #main_site_wrapper {
+	position:relative;
+}
+
+#calendar_holder {
+	width:100%;
+}
+
+#active_admin_content #main_content_wrapper {
+	float:none;
+	width:95%;
+}
+
+#active_admin_content {
+	position:relative;
+}
+
+#active_admin_content #main_content_wrapper #main_content {
+	margin-right:0px;
+}
+
+#roadmap-title-info {
+	h2 {
+		font-size:1.6em;
+	}
+	h3 {
+		font-size:1.2em;
+	}
+}
+
+#roadmap-budget-numbers {
+	h3 {
+		font-size:1em;
+		line-height:1.4em;
+	}
+}
+
+#googleChart {
+	display:none;
+}

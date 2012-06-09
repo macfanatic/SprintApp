@@ -1,0 +1,3 @@
+$(function() {
+	$("#timer_text").text('<%= @ticket_timer.readable_elapsed rescue "00:00" %>');
+});

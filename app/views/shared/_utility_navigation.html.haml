@@ -1,0 +1,3 @@
+%p(id="utility_nav" class="header-item")
+	= link_to(display_name(current_active_admin_user), profile_admin_users_path, title: "Edit My Profile")
+	= link_to(I18n.t('active_admin.logout'), destroy_admin_user_session_path)

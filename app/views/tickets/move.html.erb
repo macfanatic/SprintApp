@@ -1,0 +1,8 @@
+<%= 
+active_admin_form_for @ticket do |f| 
+	f.inputs "Move Ticket" do
+		f.input :project, as: :select, label: "Move to Project:", collection: Project.active, hint: "Pick the project to assign this ticket to"
+	end
+	f.buttons
+end	
+%>

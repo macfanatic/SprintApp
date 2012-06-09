@@ -1,0 +1,33 @@
+Ticket #<%= @ticket.number %> has been <%= update_or_create_tag_for_version(@version)%>: <%= modified_by_name(@ticket) %>.
+
+<% last_comment = @ticket.ticket_comments.last %>
+<% version = Version.find(last_comment.version_id) rescue nil %>
+<% changes = formatted_changeset_for_version(@ticket) %>
+<% unless changes.empty? %>
+Changes:
+	<% changes.each do |text| %>
+	* <%= strip_tags(text) %>
+	<% end %>
+<% end %>
+
+<%= strip_tags(last_comment.body) rescue nil%>
+
+=======================================================================
+
+<%= sanitize(email_qualified_name(@ticket)) %>
+<%= project_ticket_url(@ticket.project, @ticket) %>
+
+* Author: <%= created_by_name(@ticket) %>
+* Status: <%= ticket_status(@ticket) %>
+* Priority: <%= ticket_priority(@ticket) %>
+* Assignee: <%= ticket_assignee(@ticket) %>
+* Category: <%= ticket_category(@ticket) %>
+* Milestone: <%= ticket_milestone(@ticket) %> 
+* Billable: <%= @ticket.billable? ? "YES" : "NO" %>
+
+<%= strip_tags(@ticket.description) %>
+
+=======================================================================
+
+You have received this email notification because you have either subscribed to it, or you are involved in this ticket.
+To remove yourself from this list, please remove yourself from the "Watchers" list for this ticket.

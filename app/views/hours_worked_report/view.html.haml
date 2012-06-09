@@ -1,0 +1,43 @@
+= render 'search'
+
+%br/
+%hr.noprint
+
+- c = GoogleCharts::Charts::Line.new self, @comments
+- c.title "Hours Worked Report: #{@start.humanize} - #{@end.humanize}"
+- c.label "Date", :first
+- c.value "Hours Worked", lambda { |day| day.last.values.sum.to_f.round(2) }
+= raw c.to_html
+
+%br.noprint
+%hr.noprint
+%br.noprint
+
+.panel
+	%h3== Hours Worked Report: #{@start.humanize} - #{@end.humanize}
+	.panel_contents
+		%table
+			%tr
+				%th.narrow Date
+				%th.narrow Hours Worked
+				%th Hours Worked per Ticket
+			- @comments.each do |comment|
+				%tr
+					%td.bold= comment.first.humanize
+					%td= comment.last.sum(&:last)
+					%td
+						%table(class="employee_timesheet_tickets")
+							- comment.last.each do |admin_user_id, time|
+								- employee = AdminUser.find(admin_user_id)
+								%tr
+									%td= link_to employee.full_name, employee, target: "_blank"
+									%td(class="time")= "%0.2f" % time
+									
+			%tr.total_row
+				%td.bold TOTAL
+				%td.bold= @total_time
+				%td
+					%table.employee_timesheet_tickets
+						%tr
+							%td
+							%td.time.bold= @total_time

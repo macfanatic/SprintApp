@@ -1,0 +1,9 @@
+<%=
+active_admin_form_for(resource) do |f|
+	f.inputs "Priority Details" do
+	  f.input :name
+	  f.input :weight, :as => :select, :collection => TicketPriority::WEIGHTS, :member_label => :titleize
+	end
+	f.buttons
+end
+%>

@@ -1,0 +1,21 @@
+%table(width="100%")
+	%tr
+		%td
+			%h3(style="margin-bottom:18px;font-size:18px;color:#5E6469;font-weight:normal;")== Welcome to SprintApp!
+	
+	%tr
+		%td(style="background:url(#{asset_path 'divider.png'}) repeat-x top left;padding-top:10px;font-size:12px;")
+			
+			%p== You have received this email because someone in your organization has registered you for an account with SprintApp.
+			%p== To login and begin using SprintApp today, visit #{link_to dashboard_url, dashboard_url}.
+				
+			%p
+				Your login credentials are:
+				%ul
+					%li== username: #{@user.email}
+					%li== password: #{@user.password}				
+				
+- content_for :footer do
+	== You have received this email notification because someone in your organization has registered you for an account with SprintApp.
+	%br/
+	If you feel like this has been done in error, please email support@sprintapp.com for assistance.

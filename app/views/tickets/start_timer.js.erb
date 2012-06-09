@@ -1,0 +1,19 @@
+if ( $("#timer-bar").is(":visible") ) {
+	$("#timer-bar").slideUp('slow', function() {
+		$("#timer-bar").find("#timer-content").html('<%=escape_javascript render "shared/timer_content", ticket_timer: @ticket_timer %>').end().slideDown('slow', function() {
+			animate_timer_bar();
+			start_clock_timer();
+		});
+	});
+} else {
+	$("#timer-bar").find("#timer-content").html('<%=escape_javascript render "shared/timer_content", ticket_timer: @ticket_timer %>').end().slideDown('slow', function() {
+		animate_timer_bar();
+		start_clock_timer();
+	});
+}
+
+$("#start-timer-form").fadeOut('fast', function() {
+	$("#stop-timer-form").fadeIn('fast');
+});
+
+$("#start-ticket-timer").removeClass("has-timer");

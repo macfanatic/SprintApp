@@ -1,0 +1,16 @@
+= form_tag employee_timesheet_view_path, class: "filter_form" do
+	%fieldset(class="inputs")
+		%legend
+			%span Build Employee Timesheet
+		%ol
+			%li(class="input")
+				= label_tag :employee_id, "Employee: "
+				= select_tag :employee_id, options_from_collection_for_select(@employees, :id, :reverse_name, params[:employee_id])
+			%li(class="input filter_form_field filter_date_range")
+				= label_tag :start, "Start Date: "
+				= text_field_tag :start, params[:start], class: :datepicker
+			%li(class="input filter_form_field filter_date_range")
+				= label_tag :end, "End Date: "
+				= text_field_tag :end, params[:end], class: :datepicker
+
+	= submit_tag "View Timesheet", class: "noprint"

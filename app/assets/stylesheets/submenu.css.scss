@@ -1,0 +1,65 @@
+body.tickets, body.roadmap, body.projects, body.milestones {
+	#title_bar {
+		margin-bottom:0px;
+	}
+}
+
+#detail_nav {
+  background: #d6d6d6;
+  @include gradient(#dfdfdf, #d5d5d5);
+  @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.37));
+  text-shadow: white 0 1px 0;
+  padding: 9px 20px 10px 10px;
+  position: relative;
+  border-bottom:1px solid #EEE;
+  border-top:1px solid #f1f1f1;
+
+	ul#tabs {
+		
+		margin: 0px 0px 0px 170px;
+		
+		li {
+			
+			display: inline;
+			margin-right: 4px;
+			padding: 9px 0;
+			font-size: 1.0em;
+			position: relative;
+					
+			a {
+		
+				text-decoration: none;
+				padding: 12px 10px 12px 10px;
+				position: relative;
+				-webkit-border-radius: 0px;
+				-moz-border-radius: 0px;
+				border-radius: 0px;
+				color: #6F6F70;
+				font-weight:bold;
+				
+				&:hover {
+					background: none;
+					color: #3c3c3d;
+				}
+				
+			}
+			
+			&.current > a {
+				
+				background: #ececec;
+				@include gradient(#fff, #ececec);
+				color: #3c3c3d;
+				
+				&:hover {
+					background: #ececec;
+					@include gradient(darken(#fff, 20%), darken(#ececec, 20%));
+					color: #3c3c3d;
+				}
+				
+			}
+			
+		}
+		
+	}
+
+}

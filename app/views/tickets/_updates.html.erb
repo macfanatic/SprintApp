@@ -1,0 +1,17 @@
+<%=
+unless f.object.new_record?	
+	f.inputs "Update" do
+		f.object.ticket_comments.build unless f.object.invalid?
+		f.semantic_fields_for :ticket_comments do |comments|
+			if comments.object.new_record? 
+				comments.inputs do
+					comments.input :time, as: :string, hint: "Enter in decimal (ie, 1.5 hours) or time format (ie, 2:37)" if can?(:manual_punch, comments.object)
+					comments.input :body, input_html: { class: "ckeditor" }, :label => "New Comment"
+				end
+			else
+				render :partial => "ticket_comment", :locals => { :ticket_comment => comments.object }
+			end
+		end
+	end
+end
+%>

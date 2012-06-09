@@ -1,0 +1,10 @@
+<%=
+active_admin_form_for(resource) do |f|
+	f.inputs "Team Details" do
+	  f.input :name
+	  f.input :description
+	  f.input :admin_users, :label => "Members", :as => :check_boxes
+	end
+	f.buttons
+end
+%>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	
+	<link rel="apple-touch-icon" sizes="57x57" href="<%= path_to_image 'touch-icon-57.png' %>" />	
+	<link rel="apple-touch-icon" sizes="72x72" href="<%= path_to_image 'touch-icon-72.png' %>" />
+	<link rel="apple-touch-icon" sizes="114x114" href="<%= path_to_image 'touch-icon-114.png' %>" />
+	<link rel="apple-touch-icon" sizes="144x144" href="<%= path_to_image 'touch-icon-144.png' %>" />
+	
+	<link rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)" href="<%= path_to_image 'ipad-splash-landscape.png' %>" />
+	<link rel="apple-touch-startup-image" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)" href="<%= path_to_image 'ipad-splash-portrait.png' %>" />
+	<link rel="apple-touch-startup-image" media="screen and (max-device-width: 320px)" href="<%= path_to_image 'iphone-splash-portrait.png' %>" />
+
+  <title><%= [@page_title, active_admin_application.site_title].compact.join(" | ") %></title>
+
+  <% ActiveAdmin.application.stylesheets.each do |style| %>
+    <%= stylesheet_link_tag style.path, style.options %>
+  <% end %>
+  <% ActiveAdmin.application.javascripts.each do |path| %>
+    <%= javascript_include_tag path %>
+  <% end %>
+	<%= javascript_include_tag "public" %>
+
+  <%= csrf_meta_tag %>
+</head>
+<body class="logged_out <%= controller.action_name %>">
+<div id="wrapper">
+
+  <div id="content_wrapper">
+		<%= image_tag "logo.png", id: :logo %>
+    <% if flash.keys.any? %>
+      <% flash.each do |type, message| %>
+        <%= content_tag :div, message, :class => "flash flash_#{type}" %>
+      <% end %>
+    <% end %>
+    <div id="active_admin_content" class="matt">
+      <%= yield %>
+    </div>
+  </div>
+  <div id="footer">
+    <%= yield :footer %>
+  </div>
+</div>
+</body>
+</html>

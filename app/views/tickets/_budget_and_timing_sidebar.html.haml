@@ -1,0 +1,29 @@
+.attributes_table.ticket
+	%table
+		%tr
+			%th Created
+			%td= resource.created_at.humanize
+		%tr
+			%th Health
+			%td= health_tag_for_ticket(resource)
+		%tr
+			%th Progress
+			%td(id="simple_budget_progress_indicator")= simple_budget_progress_indicator(resource.actual_time, resource.estimated_time)
+		%tr
+			%th Estimated
+			%td= resource.estimated_time
+		%tr
+			%th Actual
+			%td(id="actual_time_spent")= resource.actual_time
+		%tr
+			%th Billable
+			%td= ticket_billable_status_tag(resource)
+		%tr
+			%th Timer
+			%td
+				#ticket-timer-wrapper(class=wrapper_class)
+					= form_for resource, url: stop_timer_ticket_path(resource, format: :js), remote: true, method: :post, html: { id: "stop-timer-form", "data-type" => :script } do |f|
+						= f.submit "Stop Timer", class: :update, id: "stop-ticket-timer"
+				
+					= form_for resource, url: start_timer_ticket_path(resource, format: :js), remote: true, method: :post, html: { id: "start-timer-form", "data-type" => :script } do |f|
+						= f.submit "Start Timer", class: :update, id: "start-ticket-timer"

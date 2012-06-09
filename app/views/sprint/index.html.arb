@@ -1,0 +1,25 @@
+controller.filter :project, :as => :select, :collection => proc { Project.accessible_by(current_ability).active }
+controller.filter :ticket_priority, :collection => proc { TicketPriority.all }
+controller.filter :billable
+controller.filter :ticket_category, :collection => proc { TicketCategory.all }
+controller.filter :status, :collection => proc { TicketStatus.all }
+controller.filter :assignee, :collection => proc { AdminUser.all } unless current_admin_user.employee?
+controller.filter :name
+controller.filter :created_at
+controller.filter :updated_at
+
+h3 "Current Sprint"
+h4 { Sprint.start_date.humanize + ' - ' + Sprint.end_date.humanize }
+
+text_node(scope_buttons *controller.scopes, scope_count: false) unless current_admin_user.employee?
+
+flexible_paginated_collection tickets, :skip_pagination => true, :skip_info => true do |t|
+  t.column(:project, sortable: :project_id) { |ticket| link_to( truncate(ticket.project.display_name, length: 30), roadmap_project_path(ticket.project), title: ticket.project.display_name ) }
+  t.column("Name", :sortable => :name) { |ticket| link_to( truncate(ticket.name, length: 30), project_ticket_path(ticket.project, ticket), title: ticket.name ) }
+  t.column("Priority", :sortable => :ticket_priority_id) { |ticket| priority_tag_for_ticket(ticket) }
+  t.column :assignee, :sortable => :assignee_id unless current_admin_user.employee?
+  t.column("Status", :sortable => :status_id) { |ticket| status_tag_for_ticket_status(ticket) }
+  t.column("Tracker", :sortable => :ticket_category_id) { |ticket| ticket.ticket_category.display_name }
+  t.column("Start", :sortable => :start_date) { |ticket| status_tag( ticket.start_date.humanize, colorize_ticket_by_start_date(ticket) ) }
+  t.column("Due", :sortable => :end_date) { |ticket| status_tag_for_ticket_by_due_date(ticket) }
+end

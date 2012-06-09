@@ -1,0 +1,5 @@
+<% milestone_path = project_milestone_path(milestone.project, milestone) %>
+<tr>
+	<th><%= link_to milestone.name, milestone_path %></th>
+	<td><%= link_to milestone.safe_end_date, milestone_path %></td>
+</tr>

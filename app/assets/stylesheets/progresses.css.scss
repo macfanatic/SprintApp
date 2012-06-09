@@ -1,0 +1,49 @@
+.progress-indicator {
+
+	height:20px;
+	border:1px solid #5F615F;
+	position:relative;
+	width:100%;
+	
+	.progress {
+		
+		display:block;
+		height:100%;
+		position:absolute;
+		top:0;
+		left:0;
+		
+		&.orange {
+			background:#e29b20;
+		}
+		&.red {
+			background:#d45f53;
+		}
+		&.green {
+			background:#8DAA92;
+		}
+		&.light-green {
+			background:#AFC7A7;
+		}
+		&.grey {
+			background:#cacaca;
+		}
+		&.blue {
+			background:#456789;
+		}
+	}
+	
+	.percent {
+		display:block;
+		height:100%;
+		position:absolute;
+		top:1px;
+		right:10px;
+		font-weight:bold;
+	}
+	
+}
+
+td .progress-indicator {
+	width:100%;
+}

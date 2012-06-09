@@ -1,0 +1,26 @@
+<div class="panel">
+    <h3>Address</h3>
+    <div class="panel_contents">
+      <div id="attributes_table_employee_1" class="attributes_table">
+        <table cellspacing="0" cellpadding="0" border="0">
+          <tbody>
+          <tr>
+            <th>Street</th>
+            <td><%= address.street.blank? ? raw('<span class="empty">Empty</span>') : address.street %></td>
+          </tr>
+          <tr>
+            <th>City</th>
+            <td><%= address.city.blank? ? raw('<span class="empty">Empty</span>') : address.city %></td>
+          </tr>
+          <tr>
+            <th>State</th>
+            <td><%= address.state.blank? ? raw('<span class="empty">Empty</span>') : address.state %></td>
+          </tr>
+          <tr>
+            <th>Zip</th>
+            <td><%= address.zip.blank? ? raw('<span class="empty">Empty</span>') : address.zip %></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+  </div>

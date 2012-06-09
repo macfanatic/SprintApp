@@ -1,0 +1,5 @@
+<% ticket_path = project_ticket_path(ticket.project, ticket) %>
+<tr>
+	<th><%= link_to ticket.display_name, ticket_path %></th>
+	<td><%= link_to ticket.name, ticket_path %></td>
+</tr>

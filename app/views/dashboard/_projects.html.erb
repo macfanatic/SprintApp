@@ -1,0 +1,5 @@
+<% context.instance_eval do |attr_table|
+attr_table.column(:name) { |project| link_to( project.display_name, project_path(project) ) }
+attr_table.column(:client) { |project| link_to( project.client_name, client_path(project.client) ) }
+attr_table.column(:author) { |project| modified_by(project) }
+end %>

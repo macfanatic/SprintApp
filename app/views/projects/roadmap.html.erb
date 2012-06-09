@@ -1,0 +1,52 @@
+<div id="roadmap-budget-numbers">
+	<% unless current_admin_user.employee? %>
+	<h3><strong><%= number_to_currency @project.actual_time * @project.hourly_rate %> Actual / <%= number_to_currency @project.estimated_time * @project.hourly_rate %> Estimated</strong></h3>
+	<% end %>
+	
+	<h3><strong><%= number_to_human((@project.end_date - Date.today).to_i) rescue 'Unknown # of' %> Days Left to Completion</strong></h3>
+</div>
+<div id="roadmap-title-info">
+	<h2>Roadmap: <%= truncate @project.display_name, length: 30 %></h2>
+	<h3><strong><%= @project.actual_time %> Actual / <%= @project.estimated_time %> Estimated / <%= @project.billable_time %> Billable</strong></h3>
+</div>
+<div class="cleared"></div>
+
+<div class="project-milestone">
+	<h3 class="milestone">Project Health</h3>
+	
+	<em>Ticket Progress</em>
+	<%= project_progress_indicator(@project) %>
+	<p><strong><%= @project.tickets.overdue.count %> Overdue / <%= @project.tickets.active.count %> Open / <%= @project.tickets.closed.count %> Closed</strong></p>
+	
+	<em>Budget Progress</em>
+	<%= project_budget_progress_indicator(@project) %>
+	<p><strong><%= @project.actual_time %> Actual / <%= @project.estimated_time %> Estimated</strong></p>
+	
+	<em>Billable vs Non-Billable</em>
+	<%= billable_progress_indicator(@project) %>
+	<p><strong><%= @project.billable_time %> Billable / <%= @project.non_billable_time %> Non-Billable / <%= @project.actual_time %> Total Time Spent</strong></p>
+	
+</div>
+
+<% milestones = @project.milestones.overdue %>
+<% unless milestones.count == 0 %>
+	<h3>Overdue Milestones (<%= milestones.count %>)</h3>
+	<%= content_tag 'table', :for => @project do %>
+		<%= render :partial => "projects/roadmap/milestone", :collection => milestones  %>
+	<% end %>
+<% end %>
+
+<% milestones = @project.milestones.active %>
+<% unless milestones.count == 0 %>
+	<h3>Open Milestones (<%= milestones.count %>)</h3>
+	<%= content_tag 'table', :for => @project do %>
+		<%= render :partial => "projects/roadmap/milestone", :collection => milestones  %>
+	<% end %>
+<% end %>
+
+<% @project.milestones.each do |milestone| %>
+	<div class="project-milestone">
+		<h3 class="milestone"><%= milestone.name %> <%= '(%s)' % milestone.safe_end_date %></h3>
+		<%= render :partial => 'milestones/roadmap/roadmap', :locals => { :milestone => milestone } %>
+	</div>
+<% end %>

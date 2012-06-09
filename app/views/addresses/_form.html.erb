@@ -1,0 +1,12 @@
+<%=
+form.inputs "Address" do 
+  form.semantic_fields_for :address do |address| 
+    address.inputs :class => "" do 
+      address.input :street 
+      address.input :city 
+      address.input :state, :as => :select, :collection => States::all.invert, :required => false 
+      address.input :zip, as: :string
+    end 
+  end 
+end 
+%>
