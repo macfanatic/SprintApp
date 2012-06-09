@@ -1,0 +1,17 @@
+$(function() {
+	
+	<% unless @ticket_comment.valid? %>
+	window.alert("Unable to update time.");
+	return;
+	<% end %>
+	
+	// Replace the comment itself
+	var $comment = $("a.edit-ticket-history[data-id=<%= @ticket_comment.id %>]").closest('li');
+	$comment.slideUp('slow', function() {
+		$comment.replaceWith('<%=j render "ticket_comment", ticket_comment: ticket_comment %>').slideDown('slow');
+	});
+	
+	// Update the stats bar in the side pane
+	$("#actual_time_spent").text('<%= @ticket_comment.ticket.actual_time %>');
+
+});

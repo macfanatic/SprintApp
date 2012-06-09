@@ -1,0 +1,7 @@
+<p>This calendar allows you to easily browse open tickets, filtering by several attributes to create complex queries, to visualize workflow in your organization.</p>
+<% if can?(:create, Ticket) %>
+<p><strong>You can drag and drop tickets to change the start date, or drag from the right edge to resize the ticket to change the end date.</strong></p>
+<% else%>
+<p><strong>The tickets shown are only tickets assigned to you.</strong></p>
+<% end %>
+<p>Click a ticket to view more information.</p>

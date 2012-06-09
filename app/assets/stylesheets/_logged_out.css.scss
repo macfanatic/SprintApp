@@ -1,0 +1,32 @@
+body.logged_out {
+		
+	#wrapper {
+		background:url(asset-path("default/bg-header.jpg", image));
+	}
+
+	#logo {
+		margin-bottom:10px;
+	}
+	
+	#footer {
+		@include shadow(0, -1px, 20px, #666);
+	  border-top: 1px solid darken(#6A7176, 5%);
+	  @include gradient(#6A7176, #4D5256);
+		width:100%;
+		padding:30px 0px;
+	}
+	
+	.tweets {
+		width:100%;
+		text-align:center;
+		font-size:1.2em;
+		color:#fff;
+		@include text-shadow(0 1px 0 #000);
+		
+		a, a:visited, a:link, a:hover {
+			color:#5ba6c9;
+		}
+		
+	}
+	
+}

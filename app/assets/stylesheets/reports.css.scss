@@ -1,0 +1,36 @@
+.employee_timesheet_tickets {
+	.time {
+		text-align:right;
+	}
+}
+
+.total_row {
+	&> td {
+		border-top:1px solid #DFE1E2;
+		border-bottom:1px solid #DFE1E2;
+		padding:15px 10px 8px 5px;
+	}
+	table {
+		margin:0px;
+		td {
+			padding:0px 4px;
+		}
+	}
+}
+
+.company_roadmap {
+	
+	.project-health {
+		width:100%;
+		
+		> em {
+			font-size:1.2em;
+		}
+		
+	}
+	
+}
+
+#employee_toggle {
+	margin-bottom:15px !important;
+}

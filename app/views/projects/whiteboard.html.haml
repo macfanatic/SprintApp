@@ -1,0 +1,8 @@
+.panel
+	%h3== #{truncate @project.name, length: 75} Whiteboard
+	.panel_contents
+		.ticket-history-comment= raw @project.whiteboard
+	
+= form_tag edit_whiteboard_project_path(@project), method: :get do
+	.buttons
+		= submit_tag "Edit Whiteboard", class: :update

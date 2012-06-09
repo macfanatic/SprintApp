@@ -1,0 +1,45 @@
+%html
+	%head
+		%style(type="text/css") 
+			:sass
+				body
+					color: #333333
+					text-shadow: #fff 0 1px 0
+					font-family:Helvetica,Arial,sans-serif
+					padding: 0px
+					margin: 0px
+				a
+					color: #38678B
+				#prom
+					text-shadow: #333 0 1px 0
+			
+	%body.email(style="margin:0px;padding:0px;font-family:Helvetica,Arial,sans-serif;")
+		%table#wrapper(background="#{asset_path 'email-bg.png'}" style="width:100%;")
+			%tr
+				%td
+					%table#content(style="color#333333;font-size:12px;margin:10px auto 0px auto;padding:0px 10px 10px 10px;" width="750")
+						%tr
+							%td(style="padding:15px 0px 25px 0px;")
+								%table
+									%tr
+										%td(width="700")		
+											= link_to(dashboard_url) do
+												= image_tag "logo.png"
+										%td(align="right")
+											%table
+												%tr
+													%td
+														= link_to"http://twitter.com/sprint_app" do
+															= image_tag "twitter.png", width: "24"
+													%td
+														= link_to "http://www.facebook.com/sprintapp" do
+															= image_tag "facebook.png", width: "24"
+						%tr
+							%td
+								= yield
+			%tr
+				%td#prom(background="#{asset_path 'bg-footer-prom.png'}")
+					%table(style="margin:0px auto;font-size:12px;font-style:italic;color:#fff;padding:27px;")
+						%tr
+							%td
+								= yield :footer

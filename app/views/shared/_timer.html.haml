@@ -1,0 +1,6 @@
+- ticket_timer = TicketTimer.find(:first, conditions: { admin_user_id: current_admin_user.id })
+- bar_class = ticket_timer.present? ? "" : "hidden"
+#timer-bar(class=bar_class)
+	#red-bar
+	#timer-content
+		= render "shared/timer_content", ticket_timer: ticket_timer

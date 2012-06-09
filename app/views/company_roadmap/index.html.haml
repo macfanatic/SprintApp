@@ -1,0 +1,8 @@
+%h3.print Company Roadmap
+- if @projects.empty?
+	%h5 Please add a project for your organization to use this report.
+- else
+	= render partial: 'project', collection: @projects
+
+%p.print 
+	%em See your browser documentation to enable printing CSS background colors and images if you do not see the progress bars in your printout.

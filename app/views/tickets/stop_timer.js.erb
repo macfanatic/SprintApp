@@ -1,0 +1,31 @@
+$("#stop-timer-form").fadeOut('fast', function() {
+	
+	// Update the "start/stop" buttons in the sidebar
+	$("#start-timer-form").fadeIn('fast');
+	
+	// Hide the timer bar itself
+	$("#timer-bar").slideUp('slow');
+	
+	// Stop the timer & it's ajax requests
+	stop_clock_timer();
+	
+	<% unless (@comment.new_record? rescue false) %>
+	
+	// Show the new TicketComment being injected into the page for the history
+	var $line = $('<%=escape_javascript render partial: "ticket_comment", locals: { ticket_comment: @comment } %>');
+	var $holder = $("#ticket-history-fieldset > ol");
+	if ( $holder.length > 0 ) {
+		$line.hide().appendTo($holder).slideDown('fast');
+	} else {
+		$holder = $('<%=escape_javascript render partial: "history", locals: { ticket: @ticket } %>').hide();
+		$("#main_content form:last").prev("div").after($holder);
+		$holder.fadeIn();
+	}
+	
+	// Update the items in the sidebar budgeting panel
+	$("#actual_time_spent").text('<%= @ticket.actual_time %>');
+	$("#simple_budget_progress_indicator").html('<%=j simple_budget_progress_indicator(@ticket.actual_time, @ticket.estimated_time) %>');
+	
+	<% end %>
+	
+});

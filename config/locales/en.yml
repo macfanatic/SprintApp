@@ -1,0 +1,18 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:  
+  unauthorized:
+    manage:
+      admin_user: "You are not allowed to manage other user accounts."
+      ticket: "You are only allowed access to tickets belonging to projects you are a member of."
+    change_password:
+      admin_user: "You are not allowed to change passwords for other user accounts."
+    archive:
+      project: "You are not allowed to archive projects."
+    unarchive:
+      project: "You are not allowed to unarchive projects."
+    complete:
+      milestone: "You are not allowed to complete milestones."
+    revive:
+      milestone: "You are not allowed to revive milestones."

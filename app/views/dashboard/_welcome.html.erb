@@ -1,0 +1,14 @@
+<%= image_tag "welcome-message.png", id: "welcome_message" %>
+
+<h4>Welcome to SprintApp!</h4>
+<p>I'm delighted that you have chosen to use SprintApp to run your business!</p>
+
+<h4>Getting Started</h4>
+<p>To get started, begin by exploring the navigation at the top of the site. You will find quick access to your organization's information in the <em>Calendar</em> and <em>Current Sprint</em> sections, while the <em>Projects</em> section affords you the most information.</p>
+
+<% if current_admin_user.admin? %>
+<h4>Attention Administrators</h4>
+<p>The <em>Administration</em> allows you, as an administrator, to create other user accounts, tweak settings, manage clients and more.  <em>Account Settings</em> to the far right is for entering billing information and other settings.</p>
+<%end %>
+
+<p><strong><em>This page will not be shown again.</em></strong></p>

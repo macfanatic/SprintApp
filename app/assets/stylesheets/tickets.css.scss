@@ -1,0 +1,143 @@
+form.consolidated_form fieldset.consolidated { 
+	li.field-row {
+		float:left;
+		margin-right: 15px;
+		width:400px;
+	}
+	ol > li { 
+		label {
+			width:120px;
+		}
+		input { 
+			width:60%;
+		}
+		p.inline-hints, p.inline-errors {
+			margin-left:120px;
+		}
+	}
+	#ticket_name, #milestone_name, #project_name, #project_number {
+		width:87%;
+	}
+	#ticket_start_date, #ticket_end_date {
+		width:71px;
+	}
+}
+
+form.filter_form.consolidated_form .filter_form_field {
+	clear:none;
+	&.cleared {
+		clear:both;
+	}
+}
+
+tr#ticket_name {
+	font-size:1.8em;
+}
+
+#ticket-history-fieldset {
+	min-width:800px;
+}
+
+.ticket-history {
+	float:left;
+	width:70%;
+	padding:0px 10px 10px 0px;
+}
+
+.ticket-history-comment {
+	background:#fff;
+	border:1px solid #eee;
+	padding:10px;
+	
+	p {
+		margin: 15px 0px;
+	}
+	
+	> ul {
+		list-style-type:circle;
+		padding-left:15px;
+	}
+	
+	> ol {
+		list-style-type:decimal;
+		padding-left:15px;
+		
+		li {
+			padding:0px !important;
+		}
+	
+	}
+	
+	code {
+		background:#eeeeee;
+		border:1px solid #bbbbbb;
+		color:#555555;
+	}
+}
+
+form.ticket {
+	
+	ul.changeset {
+		
+		list-style-type:circle;
+		padding-left:15px;
+		margin-bottom:5px;
+		
+	}
+	
+}
+
+th.status a {
+	text-transform:none;
+}
+
+#edit_ticket_button {
+	margin-bottom:15px;
+}
+
+.tickets #title_bar .action_item a[href="/tickets/new"] {
+	display:none;
+}
+
+.avatar {
+	width:50px;
+	height:50px;
+	float:left;
+	margin-right:5px;
+	border:1px solid #CACACA;
+	padding:3px;
+}
+
+#avatar_and_login_info_sidebar_section {
+	.attributes_table th {
+		width:110px;
+	}
+}
+
+form fieldset ol > li label.with_avatar {
+	min-width:200px;
+}
+
+.edit-ticket-history img {
+	height:20px;
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+	opacity:0.5;
+	&:hover {
+		filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+		opacity:1.0;
+	}
+}
+
+th.narrow {
+	width:100px;
+}
+
+body.index.tickets {
+	.blank_slate_container {
+		.blank_slate {
+			> a[href="/tickets/new"] {
+				display:none;
+			}
+		}
+	}
+}

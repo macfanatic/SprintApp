@@ -1,0 +1,19 @@
+= form_tag ticket_report_view_path, class: "filter_form" do
+	%fieldset(class="inputs")
+		%legend
+			%span Build Ticket Report
+		%ol
+			%li.input
+				= label_tag :project_id, "Project: "
+				= select_tag :project_id, options_from_collection_for_select(@projects, :id, :display_name, params[:project_id]), id: "project_chooser"
+			%li.input
+				= label_tag :ticket_id, "Ticket: "
+				= select_tag :ticket_id, options_from_collection_for_select(@tickets, :id, :informative_name, params[:ticket_id]), id: "ticket_chooser"
+			%li(class="input filter_form_field filter_date_range")
+				= label_tag :start, "Start Date: "
+				= text_field_tag :start, params[:start], class: :datepicker
+			%li(class="input filter_form_field filter_date_range")
+				= label_tag :end, "End Date: "
+				= text_field_tag :end, params[:end], class: :datepicker
+
+	= submit_tag "View Report", class: "noprint"

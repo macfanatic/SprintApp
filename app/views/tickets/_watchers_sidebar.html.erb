@@ -1,0 +1,5 @@
+<ul>
+	<% resource.watchers.each do |watcher| %>
+    <li><%= link_to watcher.full_name, admin_user_path(watcher) %></li>
+  <% end %>
+</ul>

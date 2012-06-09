@@ -1,0 +1,7 @@
+.panel
+	%h3 History
+	.panel_contents
+		%form
+			%fieldset(id="ticket-history-fieldset")
+				%ol
+					= render partial: "ticket_comment", collection: ticket.ticket_comments

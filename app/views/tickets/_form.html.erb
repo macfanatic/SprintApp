@@ -1,0 +1,33 @@
+<% @project = @ticket.project if @project.nil? %>
+<%=
+active_admin_form_for [@project, @ticket], :html => { :class => "filter_form consolidated_form" } do |f| 
+  f.inputs "Ticket Details", :class => "inputs consolidated" do 
+	
+		f.input :name if can?( :advanced_edit, @ticket )
+		f.input :status, :wrapper_html => { :class => 'field-row cleared' }, :collection => TicketStatus.all
+		f.input :assignee, :wrapper_html => { :class => 'field-row' }, :collection => @project.members.sorted
+	
+		if can?( :advanced_edit, @ticket )
+			f.input :ticket_category, :label => "Tracker", :wrapper_html => { :class => 'field-row cleared'}, :collection => TicketCategory.all
+			f.input :milestone, :wrapper_html => { :class => 'field-row'}, :collection => @project.milestones.except(:order).order(:start_date)
+			f.input :ticket_priority, :label => "Priority", :wrapper_html => { :class => 'field-row cleared' }, :collection => TicketPriority.all
+			f.input :estimated_time, :label => "Estimated Time", :wrapper_html => { :class => "field-row" }, input_html: { value: "%.2f" % @ticket.estimated_time }
+			f.input :billable, :as => :select, :wrapper_html => { :class => "field-row cleared" }
+	    f.input :start_date, :label => "Start Date", :as => :datepicker, :wrapper_html => { :class => "filter_form_field filter_date_range field-row cleared" }
+	    f.input :end_date, :label => "End Date", :as => :datepicker, :wrapper_html => { :class => "filter_form_field filter_date_range field-row" }
+			f.input :description, :input_html => { class: :ckeditor }, :wrapper_html => { :class => 'cleared' }
+		else
+			f.input :description, :as => :hidden	# Hack for ActiveAdmin form buffer to work evidently
+		end
+		
+  end 
+	
+	f.inputs "Watchers" do
+		f.input :watchers, :as => :check_boxes, :collection => @project.members.sorted, hint: "Watchers will receive email notifications of updates to this ticket."
+	end
+	
+	render :partial => "updates", :locals => { :f => f }
+		
+  f.buttons 
+end 
+%>

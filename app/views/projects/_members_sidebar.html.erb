@@ -1,0 +1,5 @@
+<ul>
+	<% resource.members.each do |member| %>
+    <li><%= link_to member.full_name, admin_user_path(member) %></li>
+  <% end %>
+</ul>

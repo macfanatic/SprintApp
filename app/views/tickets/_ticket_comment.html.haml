@@ -1,0 +1,24 @@
+%li
+	%label(class="label with_avatar")
+		= avatar(created_by_user(ticket_comment))
+		= ticket_comment.created_at.humanize
+		%br/
+		%span= created_by(ticket_comment)
+		%br/
+		= link_to image_tag("i_pencil.png"), update_comment_tickets_path(format: :js), class: 'edit-ticket-history', title: 'Edit this comment', "data-time" => ticket_comment.time, "data-id" => ticket_comment.id if current_admin_user.admin?
+		.cleared
+		
+	.ticket-history
+		- version = Version.find(ticket_comment.version_id) rescue nil
+		- changes = formatted_changeset_for_version(version)
+		- unless changes.empty?
+			.ticket-history-changeset.ticket-history-comment
+				%span Changes
+				%ul.changeset
+					- changes.each do |text|
+						%li= raw(text)
+						
+		- unless ticket_comment.body.blank?
+			.ticket-history-comment= ticket_comment.body.html_safe
+			
+	.cleared

@@ -1,0 +1,4 @@
+- if ticket_timer.present?
+	%a(href="#{project_ticket_path(ticket_timer.project, ticket_timer.ticket)}" title="View ticket ##{ticket_timer.ticket.id}")
+		== #{ticket_timer.ticket.display_name} - #{truncate(ticket_timer.ticket.name, length: 100)} - 
+		%span(id="timer_text" data-update="#{ticket_time_ticket_path(ticket_timer.ticket, format: :js)}")= ticket_timer.readable_elapsed

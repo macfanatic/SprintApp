@@ -1,0 +1,8 @@
+<% context.instance_eval do |attr_table|
+attr_table.column(:name) { |ticket| link_to truncate(ticket.name, :length => 30), project_ticket_path(ticket.project, ticket), title: ticket.name }
+attr_table.column(:priority) { |ticket| priority_tag_for_ticket(ticket) }
+attr_table.column(:status) { |ticket| status_tag_for_ticket_status(ticket) }
+attr_table.column(:health) { |ticket| simple_budget_progress_indicator(ticket.actual_time, ticket.estimated_time) }
+attr_table.column(:project) { |ticket| link_to truncate(ticket.project_display_name, :length => 45), project_path(ticket.project), title: ticket.project_display_name }
+attr_table.column(:due) { |ticket| status_tag_for_ticket_by_due_date(ticket) }
+end %>

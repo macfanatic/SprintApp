@@ -1,0 +1,115 @@
+@import "fullcalendar";
+
+@mixin event-priority($color) {
+	border-color:darken($color, 10%);
+	@include gradient($color, darken($color, 5%));
+	
+	.fc-event-skin {
+		border-color:darken($color, 10%);
+		@include gradient($color, darken($color, 5%));
+	}
+}
+
+.fc-event {
+	
+	&.low {
+		@include event-priority(#B3CAF2);
+	}
+	
+	&.normal {
+		@include event-priority(#CACACA);
+	}
+	
+	&.high {
+		@include event-priority(#EBE26C);
+	}
+	
+	&.immediate {
+		@include event-priority(#D45F53);
+	}
+	
+}
+
+.fc-day-number {
+	color:#787878;
+}
+
+.fc-state-highlight {
+	background:lighten(#CACACA, 10%);
+}
+
+table.fc-border-separate {
+
+	th { 
+	  @include section-header;
+	  border-right: none;
+	  text-align: left;
+	  padding-left: $cell-horizontal-padding;
+	  padding-right: $cell-horizontal-padding;
+
+	}
+	
+}
+
+td.fc-header-left {
+	vertical-align:middle;
+}
+
+.fc-button-prev {
+	margin-right:2px !important;
+}
+
+.fc-state-default {
+	
+	background:transparent;
+	border:none;
+	
+	&.fc-state-disabled {
+		
+		.fc-button-inner {
+		 color: #777;
+	   cursor: default;
+	   opacity: 0.6;
+	   @include border-radius(5px);
+			
+	    &:hover {
+	      color: #777;
+	    }
+	    &:active {
+	      @include box-shadow(0 1px 0px rgba(0,0,0,0.10), 0 0 0 1px #FFF inset);
+	    }
+
+		}
+
+	}
+	
+	.fc-button-inner {
+		background:transparent;
+		@include light-button; 
+	  padding: 12px 17px 10px;
+	  span.icon { vertical-align: bottom; margin-right: 4px;} 
+	  margin: 0px;
+  	@include border-radius(5px);
+	
+	  &:hover{
+	    @include icon-color(#000);
+	  }
+	}
+	
+	.fc-button-effect {
+		span {
+			background:transparent;
+		}
+	}
+	
+}
+
+#loading {
+	position:absolute;
+	width:50px;
+	height:50px;
+	display:none;
+	top:52px;
+	left:175px;
+	z-index:999;
+}

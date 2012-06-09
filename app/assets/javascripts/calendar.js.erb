@@ -1,0 +1,90 @@
+$(function() {
+		
+	$.ajaxSetup({
+	  beforeSend: function(xhr) {
+	    xhr.setRequestHeader("Accept", "text/javascript");
+	  }
+	});
+	
+	function connect_calendar_dropdowns() {
+		var $this = $('#milestones_toggle');
+		var $assignee = $('#assignee_id');
+		if ( $this.val() == "false" ) {
+			$assignee.attr('disabled', false);
+		} else {
+			$assignee.attr('disabled', true);
+		}
+	}
+	
+	$('#milestones_toggle').change(connect_calendar_dropdowns);
+
+	$('#calendar_holder').fullCalendar({
+		
+		editable: true,
+		dragOpacity: 0.75,
+		events: '/calendar/events.json',
+		
+		eventDrop: function(event, dayDelta, minuteDelta, allDay, revertFunc) {
+			updateEvent(event);
+		},
+		
+    eventResize: function(event, dayDelta, minuteDelta, revertFunc) {
+			updateEvent(event);
+		},
+
+		loading: function(bool) {
+			if (bool) { 
+				$('#loading').fadeIn('fast');
+			}	else {
+				$('#loading').fadeOut('fast');
+			}
+		}
+	
+	});
+	
+	$('#calendar_filter_form').live('ajax:success', function(data, status, xhr) {
+		$('#calendar_holder').fullCalendar('refetchEvents');
+	});
+	
+	$('#calendar_filter_form').live('ajax:error', function(xhr, status, error) {
+		alert("An unknown error has occurred, please try a different option or contact support if this continues.");
+	});
+	
+	connect_calendar_dropdowns();
+		
+});
+
+function updateEvent(the_event) {
+	var type = the_event.type;
+	if (the_event.type == 'milestone') {
+		updateMilestone(the_event);
+	} else {
+		updateTicket(the_event);
+	}
+}
+
+function updateMilestone(the_event) {
+  $.update(
+    the_event.url, 
+		{ milestone: { 
+       start_date: "" + the_event.start,
+       end_date: "" + the_event.end
+     }
+    },
+		null,
+    function (response) { alert('There was an error saving your milestone.'); }
+  );
+};
+
+function updateTicket(the_event) {
+  $.update(
+    the_event.url, 
+		{ ticket: { 
+       start_date: "" + the_event.start,
+       end_date: "" + the_event.end
+     }
+    },
+		null,
+    function (response) { alert('There was an error saving your ticket.'); }
+  );
+};

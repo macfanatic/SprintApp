@@ -1,0 +1,74 @@
+.footer {
+	position:fixed;
+	width:100%;
+	bottom:0px;
+}
+
+#site_footer {
+  
+	background: #e7e7e7;
+  border-top: 1px solid darken(#6A7176, 5%);
+	@include gradient(#6A7176, #4D5256);
+	@include text-shadow(#000);
+  @include shadow(0, -1px, 20px, #666);
+  font-size: 1.1em;
+  line-height: 140%;
+  margin: 0;
+  color: #CDCDCD;
+	padding:25px 0px 25px 1%;
+	width:100%;
+	z-index:10;
+	&:hover {
+		@include gradient(darken(#6A7176, 5%), darken(#4D5256, 5%));
+	}
+
+	a, a:link, a:visited, a:hover {
+		font-size: 1.1em;
+  	color: #CDCDCD;
+  	text-decoration: none;
+  }
+
+	a:hover {
+  	text-decoration: underline;
+  }
+
+	#id {
+		width:300px;
+	}
+
+}
+
+#footerNav {
+	
+	padding-bottom:15px;
+	
+	form {
+		position:absolute;
+		right:30px;
+		font-weight:bold;
+		
+		label {
+			font-size:11px;
+			margin-right:3px;
+		}
+		
+	}
+	
+	ul {
+		position:absolute;
+		left:30px;
+		margin:0px;
+		padding:0px;
+	}
+	
+	li {
+		color: #79797a;
+		padding: 0px 5px;
+		position: relative;
+		text-decoration: none;
+		display:inline;
+		list-style:none;
+		font-size:10px;
+	}
+	
+}

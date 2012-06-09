@@ -1,0 +1,28 @@
+= form_tag hours_worked_report_view_path, class: "filter_form" do
+	%fieldset.inputs
+		%legend
+			%span Build Hours Worked Report
+		%ol
+			%li.input.check_boxes
+				%fieldset.choices
+					%legend.label 
+						%label Employees:
+					%ol#employee_listing.choices-group
+						%li#employee_toggle.choice
+							%label(for="toggle_employees")
+								= check_box_tag 'toggle_employees', 'true', params[:toggle_employees]
+								Toggle Selection (Select All/None)
+						- @employees.each do |emp|
+							%li.choice
+								%label(for="employee_id_#{emp.id}")
+									= check_box_tag 'employee_id[]', emp.id, (params[:employee_id].include?(emp.id.to_s) rescue false), id: "employee_id_#{emp.id}"
+									= emp.reverse_name
+						
+			%li(class="input filter_form_field filter_date_range")
+				= label_tag :start, "Start Date: "
+				= text_field_tag :start, params[:start], class: :datepicker
+			%li(class="input filter_form_field filter_date_range")
+				= label_tag :end, "End Date: "
+				= text_field_tag :end, params[:end], class: :datepicker
+
+	= submit_tag "View Report", class: "noprint"

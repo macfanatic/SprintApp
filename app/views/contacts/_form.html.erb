@@ -1,0 +1,12 @@
+<%=
+semantic_form_for [@client, @contact], :builder => ActiveAdmin::FormBuilder do |f| 
+  f.inputs "Contact Information" do 
+    f.input :name 
+    f.input :phone, as: :string, input_html: { value: number_to_phone(@contact.phone), maxlength: 14 }
+		f.input :cell, as: :string, input_html: { value: number_to_phone(@contact.cell), maxlength: 14 }
+    f.input :email 
+  end 
+  render :partial => "addresses/form", :locals => { :form => f } 
+  f.buttons 
+end 
+%>

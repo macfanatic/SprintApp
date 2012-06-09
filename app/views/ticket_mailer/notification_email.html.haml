@@ -1,0 +1,51 @@
+%table(width="100%")
+	%tr
+		%td
+			%h3(style="margin-bottom:18px;font-size:18px;color:#5E6469;font-weight:normal;")== Ticket ##{@ticket.number} has been #{update_or_create_tag_for_version @version }: #{modified_by @ticket}.
+	%tr
+		%td(style="background:url(#{asset_path 'divider.png'}) repeat-x top left;padding-top:10px;")
+				
+			- last_comment = @ticket.ticket_comments.last
+			- version = Version.find(last_comment.version_id) rescue nil
+			- changes = formatted_changeset_for_version version
+			- unless changes.empty?
+				#changes
+					Changes:
+					%ul
+						- changes.each do |text|
+							%li= raw(text)
+					= last_comment.body.html_safe rescue nil
+													
+			%h3.title(style="font-size:16px;font-weight:normal;")= link_to email_qualified_name(@ticket), project_ticket_url(@ticket.project, @ticket), style: "color:#38678B;"
+			%ul(style="font-size:12px;")
+				%li
+					%strong Author: 
+					= created_by @ticket
+				%li
+					%strong Status: 
+					= ticket_status @ticket
+				%li
+					%strong Priority: 
+					= ticket_priority @ticket
+				%li
+					%strong Assignee: 
+					= ticket_assignee @ticket
+				%li
+					%strong Category:
+					= ticket_category @ticket
+				%li
+					%strong Milestone:
+					= ticket_milestone @ticket
+				%li
+					%strong Billable:
+					= @ticket.billable? ? "YES" : "NO"
+	
+	%tr
+		%td(style="font-size:12px;background:url(#{asset_path 'divider.png'}) repeat-x top left;padding-top:10px;")
+			%strong Description:
+			= raw(@ticket.description)
+
+- content_for :footer do					
+	You have received this email notification because you have either subscribed to notifications for this ticket, or you are involved in this ticket.
+	%br/
+	To remove yourself from this list, please remove yourself from the "Watchers" list for this ticket.

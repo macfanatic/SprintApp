@@ -1,0 +1,67 @@
+.ui-datepicker {
+	background:url(image-path("active_admin/datepicker/datepicker-nipple.png")) no-repeat 0 -40px;
+	.ui-datepicker-header {
+		background:url(image-path("active_admin/datepicker/datepicker-header-bg.png")) no-repeat 0px 0px;
+		a.ui-datepicker-prev {
+			background:url(image-path("active_admin/datepicker/datepicker-prev-link-icon.png")) no-repeat 2px 5px;
+		}
+		a.ui-datepicker-next {
+			background:url(image-path("active_admin/datepicker/datepicker-next-link-icon.png")) no-repeat 12px 5px;
+		}
+	}
+}
+
+form.filter_form .filter_form_field.filter_date_range input[type=text] {
+	background:white url(image-path("active_admin/datepicker/datepicker-input-icon.png"))  no-repeat 100% 7px;;
+}
+
+#header ul#tabs > li.has_nested > a {
+	background:url(image-path("active_admin/nested_menu_arrow.gif")) no-repeat 89% 50%;;
+}
+
+#header ul#tabs > li.has_nested.current > a {
+	background:#7b8389 url(image-path("active_admin/nested_menu_arrow_dark.gif")) no-repeat 89% 50%;;
+}
+
+#header ul#tabs > li.has_nested:hover > a {
+	background:#7b8389 url(image-path("active_admin/nested_menu_arrow_dark.gif")) no-repeat 89% 50%;
+}
+
+table.index_table th.sortable a {
+	background:url(image-path("active_admin/orderable.png")) no-repeat 0 4px;
+}
+
+#header ul#tabs > li {
+
+	&.has_nested:hover > a { 
+  	@include rounded-top(5px);
+	}
+	
+	ul { 
+  	@include rounded-all(0,5px,5px,5px);
+	}
+
+	a {
+		@include border-radius(5px);
+	}
+}
+
+ul.readonly-list {
+	padding-left:40px;
+	margin-bottom:5px;
+	li {
+		font-style:italic;
+	}
+}
+
+pre {
+	overflow:scroll;
+}
+
+#header {
+	position:inherit;
+}
+
+body.projects.roadmap #active_admin_content #main_content_wrapper #main_content {
+	min-width:770px;
+}

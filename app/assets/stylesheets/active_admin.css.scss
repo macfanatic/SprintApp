@@ -1,0 +1,82 @@
+// Active Admin CSS Styles
+@import "active_admin/mixins";
+@import "active_admin/base";
+@import "logged_out";
+@import "tickets";
+@import "progresses";
+@import "roadmap";
+@import "submenu";
+@import "footer";
+@import "ckeditor";
+@import "sprint";
+@import "calendar";
+@import "active_admin_fixes";
+@import "timer";
+@import "reports";
+@import "ipad";
+
+// To customize the Active Admin interfaces, add your
+// styles here:
+td .status {
+	
+	display:block;
+	text-align:center;
+	
+	&.blue, &.low, .blue, .low {
+		background: #B3CAF2;
+	}
+
+}
+	
+body.logged_in .flash {
+	top:0px;
+}
+
+#title_bar {
+	margin-bottom:0px;
+	
+	.action_items a {
+		@include border-radius(5px);
+	}
+	
+}
+
+.cleared {
+	clear:both;
+}
+
+form fieldset li.hidden {
+	padding:0px !important;
+}
+
+#welcome_message {
+	display:block;
+	width:694px;
+	margin:0px auto 20px auto;
+}
+
+#active_admin_content {
+	padding-bottom:75px;
+}
+
+#wrapper {
+	min-width:750px;
+}
+
+table td.bold {
+	text-transform:uppercase;
+	color:#5E6469;
+  	text-shadow: white 0 1px 0;
+	font-weight:bold;
+	font-size:0.85em;
+}
+
+form {
+	&.filter_form a.clear_filters_btn, input[type=submit], fieldset.buttons li.cancel a {
+		@include border-radius(5px);
+	}
+}
+
+.print {
+	display:none !important;
+}

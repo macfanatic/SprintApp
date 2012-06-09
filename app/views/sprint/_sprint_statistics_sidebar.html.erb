@@ -1,0 +1,32 @@
+<div class="attributes_table">
+	<table cellpadding="0" cellspacing="0">
+		<tr>
+			<th>Tickets</th>
+			<td><%= tickets.count %></td>
+		</tr>
+		<tr>
+			<th>Milestones</th>
+			<td><%= milestones.count %></td>
+		</tr>
+		<tr>
+			<th>Estimated Hours</th>
+			<td><%= number_to_human total_hours %></td>
+		</tr>
+		<tr>
+			<th>Hours / Person</th>
+			<% hours = (total_hours.to_f / num_assignees.to_f) rescue 0.0 %>
+			<% hours = 0.0 if hours.nan? %>
+			<td><span class="status <%= colorize_hours_per_team_member_for_sprint(hours) %>"><%= number_to_human(hours) %></span></td>
+		</tr>
+		<tr>
+			<th>Tickets / Person</th>
+			<% hours = (tickets.count.to_f / num_assignees) rescue 0.0 %>
+			<% hours = 0.0 if hours.nan? %>
+			<td><%= number_to_human(hours) %></td>
+		</tr>
+		<tr>
+			<th>Team Members</th>
+			<td><%= num_assignees %></td>
+		</tr>
+	</table>
+</div>
