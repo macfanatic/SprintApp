@@ -43,9 +43,6 @@ Reports include:
 ## Getting Started
 SprintApp is easy to setup and get started.
 
-### Jump Start on Heroku
-To get started with SprintApp on Heroku quickly, see our [Deploying to Heroku Guide](https://github.com/macfanatic/SprintApp/wiki/Deploying-to-Heroku).
-
 ### Requirements
 SprintApp is built upon the following great community gems:
 
@@ -58,44 +55,26 @@ SprintApp is built upon the following great community gems:
 SprintApp is designed to run in the cloud or on dedicated hardware, whatever your organization is the most comfortable with. If you are looking for a hosting solution, we recommend [Heroku](http://www.heroku.com) for Rails hosting.
 
 1. Clone the repo to your computer or server
-2. Configure your database for use with the Rails app
-3. Run bundler
-4. Create and seed the database with default data and a user account
-5. Kick up a server with [foreman](https://github.com/ddollar/foreman) running at [localhost:5000](http://localhost:5000)
+	
+	git clone git://github.com/macfanatic/SprintApp.git sprint_app
+	
+
+2. Setup your `config/database.yml` file to point to your database
+3. Run `bundle install` to install all required gems
+4. Create and seed the database with useful defaults and a user account with `bundle exec rake db:setup`
+5. Kick up a server to get started (if locally) with `bundle exec foreman start` and open up [localhost:5000](http://localhost:5000)
 6. Login!
 	* username: admin@example.com
 	* password: password
-	
-```
-	$> git clone git://github.com/macfanatic/SprintApp.git sprint_app
-	$> cd sprint_app
-	$> mate config/database.yml
-	$> bundle install --without production
-	$> bundle exec rake db:setup
-	$> bundle exec foreman start
-```
 
 ### Configuration
 There are a few ways you can customize SprintApp for your needs.
 
-1. [Configure Carrierwave for Amazon S3](https://github.com/jnicklas/carrierwave#using-amazon-s3)
+1. Create an initializer for [Carrierwave](https://github.com/jnicklas/carrierwave) to allow uploading assets to Amazon S3.
 2. Edit the from address for [Devise](https://github.com/plataformatec/devise) in the existing initializer
 3. Edit the SMTP settings for outgoing mail (needed to email notifications of ticket updates) for the production environment.
 
 ## Contributing
-This is a guide to contributing to SprintApp. It should walk you through the major steps of contributing to this project.
-
-### 1. Create an Issue on Github
-The first step is to create an issue with [GitHub Issues](https://github.com/macfanatic/SprintApp/issues), after searching the issues to make sure that another developer hasn't already submitted the same ticket.
-
-Please be thorough in your description of the issue or feature request, and provide all relevant environment information if submitting a bug ticket.
-
-### 2. Fork and Create a Feature Branch
-If you have implemented a new feature of fixed a bug, please create a new git branch on your fork of the SprintApp project, labeled after the ticket you created in step 1.  This way when you submit a pull request to have your code integrated into the project, it is easily referenced.
-
-### 3. Submit a Pull Request
-After you are sure that your code change is ready for integration, please submit a pull request for your feature branch on github.  I will review the code and work with you to make any necessary changes before merging your pull request into the main branch.
-
 
 ## License
 Copyright (c) 2012 [Matt Brewer](https://github.com/macfanatic). MIT License.
