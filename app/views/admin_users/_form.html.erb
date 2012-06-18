@@ -1,0 +1,35 @@
+<%=
+active_admin_form_for @admin_user, html: { multipart: true } do |f| 
+	f.inputs "User Information" do 
+		f.input :first_name, label: "First Name"
+		f.input :last_name, label: "Last Name"
+		f.input :email 
+		f.input :time_zone, :label => "Time Zone", :default => Rails.application.config.time_zone 
+		f.input :role, :collection => AdminUser::ROLES, :member_label => :humanize, :input_html => { :disabled => cannot?( :assign_role, @admin_user ) }, hint: "Only administrators can change user roles"
+		f.input :avatar, as: :file, hint: "Your avatar will be displayed when viewing ticket histories"
+		f.input :github, hint: "Store your Github username to share with your team"
+	end 
+	if f.object.new_record? 
+		f.inputs "Password" do 
+			f.input :send_welcome_email, :default => true, :label => "Send User Instructional Email", :hint => "This will send an email containing all login information to the new user."
+			f.input :password, :required => true
+			f.input :password_confirmation, :label => "Password Confirmation", :required => true 
+		end
+	end 
+	f.inputs "Teams" do
+		if current_admin_user.admin?
+			f.input :teams, as: :check_boxes, collection: Team.all, hint: "Only administrators can assign users to a team"
+		else
+			f.form_buffers.last << content_tag(:ul, f.object.teams.collect { |team| content_tag(:li, team.name) }.join.html_safe, class: "readonly-list")
+		end
+	end
+	f.inputs "Project Membership" do
+		if current_admin_user.admin?
+			f.input :projects, as: :check_boxes, collection: Project.all, hint: "Only administrators can assign users to projects"
+		else
+			f.form_buffers.last << content_tag(:ul, f.object.projects.collect { |project| content_tag(:li, project.name) }.join.html_safe, class: "readonly-list")
+		end
+	end
+	f.buttons 
+end 
+%>

@@ -7,7 +7,7 @@ class AdminUser < ActiveRecord::Base
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :suspendable
   
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :role, :time_zone, :new_user, :send_welcome_email, :avatar, :github
+  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :role, :time_zone, :new_user, :send_welcome_email, :avatar, :github, :team_ids, :project_ids
   
   mount_uploader :avatar, AvatarUploader
     
