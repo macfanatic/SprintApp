@@ -1,0 +1,13 @@
+defaults: &defaults
+  email:
+    notifications_sender: 'notifications@sprintapp.com'
+    devise_sender: 'support@sprintapp.com'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

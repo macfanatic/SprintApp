@@ -1,6 +1,6 @@
 class TicketMailer < ActionMailer::Base
   
-  default from: "notifications@sprintapp.com"
+  default from: Settings.email.notifications_sender
   helper ApplicationHelper
   helper TicketsHelper
   helper AdminHelper

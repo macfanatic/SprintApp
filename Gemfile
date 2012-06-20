@@ -16,6 +16,7 @@ gem 'haml'
 
 gem 'paper_trail'
 gem 'stringex'
+gem 'settingslogic'
 
 # Assets
 gem 'carrierwave'

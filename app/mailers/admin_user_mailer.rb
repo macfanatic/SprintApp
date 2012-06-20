@@ -1,5 +1,5 @@
 class AdminUserMailer < ActionMailer::Base
-  default from: "support@sprintapp.com"
+  default from: Settings.email.notifications_sender
   layout "mailer"
   
   def welcome_email(user)

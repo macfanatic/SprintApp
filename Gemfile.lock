@@ -150,6 +150,7 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    settingslogic (2.0.8)
     sprockets (2.1.3)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -194,6 +195,7 @@ DEPENDENCIES
   rails (= 3.2.5)
   rmagick
   sass-rails
+  settingslogic
   stringex
   thin
   turn (= 0.8.2)
