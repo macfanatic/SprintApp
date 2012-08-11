@@ -82,7 +82,7 @@ ActiveAdmin.register Ticket, :sort_order => "ticket_priority_id_desc" do
   
   index do |t|
     selectable_column
-    id_column
+    column("ID", sortable: :number) { |ticket| link_to ticket.number, [ticket.project, ticket], title: ticket.name }
     column("Name", :sortable => :name) { |ticket| link_to( truncate(ticket.name, :length => 25), project_ticket_path(ticket.project, ticket), title: ticket.name ) }
     column("Priority", :sortable => :ticket_priority_id) { |ticket| priority_tag_for_ticket(ticket) }
     column("Billable", sortable: :billable) { |ticket| ticket_billable_status_tag(ticket) }
