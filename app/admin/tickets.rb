@@ -64,6 +64,22 @@ ActiveAdmin.register Ticket, :sort_order => "ticket_priority_id_desc" do
     redirect_to collection_path, :notice => I18n.t("active_admin.batch_actions.succesfully_destroyed", count: selected_ids.count, model: "ticket", plural_model: "tickets")
   end
   
+  csv do
+    column(:id) { |t| t.number }
+    column(:name) { |t| t.name }
+    column(:description) { |t| truncate strip_tags(t.description), length: 300 }
+    column(:priority) { |t| ticket_priority t }
+    column(:status) { |t| ticket_status t }
+    column(:assignee) { |t| ticket_assignee t }
+    column(:tracker) { |t| t.ticket_category.display_name }
+    column(:estimated_time)
+    column(:actual_time)
+    column(:start) { |t| t.start_date }
+    column(:end) { |t| t.end_date }
+    column(:created_at)
+    column(:updated_at)
+  end
+  
   index do |t|
     selectable_column
     id_column
