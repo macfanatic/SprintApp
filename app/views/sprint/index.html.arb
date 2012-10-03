@@ -3,7 +3,7 @@ controller.filter :ticket_priority, :collection => proc { TicketPriority.all }
 controller.filter :billable
 controller.filter :ticket_category, :collection => proc { TicketCategory.all }
 controller.filter :status, :collection => proc { TicketStatus.all }
-controller.filter :assignee, :collection => proc { AdminUser.all } unless current_admin_user.employee?
+controller.filter :assignee, :collection => proc { AdminUser.active } unless current_admin_user.employee?
 controller.filter :name
 controller.filter :created_at
 controller.filter :updated_at

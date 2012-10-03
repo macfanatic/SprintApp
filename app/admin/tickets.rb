@@ -24,7 +24,7 @@ ActiveAdmin.register Ticket, :sort_order => "ticket_priority_id_desc" do
   filter :billable, :as => :select
   filter :ticket_category, :collection => proc { TicketCategory.all }
   filter :status, :collection => proc { TicketStatus.all }
-  filter :assignee, :collection => proc { @project.members.sorted rescue AdminUser.all }
+  filter :assignee, :collection => proc { @project.members.active.sorted rescue AdminUser.active }
   filter :start_date
   filter :end_date
   filter :estimated_time

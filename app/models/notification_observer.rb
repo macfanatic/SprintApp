@@ -17,7 +17,7 @@ class NotificationObserver < ActiveRecord::Observer
   
   def notification_distribution_list(ticket, version)
     modified_by_email = AdminUser.find(version.whodunnit).email rescue nil
-    list = (ticket.watchers.pluck(:email) + [ticket.assignee_email]).uniq
+    list = (ticket.watchers.active.pluck(:email) + [ticket.assignee_email]).uniq
     list.delete_if { |email| email.nil? or email == modified_by_email }
   end
   
