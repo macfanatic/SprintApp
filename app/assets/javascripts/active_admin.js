@@ -18,3 +18,7 @@ function charge_card() {
   }
   return confirm("Are you sure you want to charge $" + to_charge + "?")
 }
+
+$(function() {
+	$(".tickets.index #number_numeric").focus();
+});
