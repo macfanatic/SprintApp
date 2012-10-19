@@ -268,7 +268,9 @@ ActiveAdmin.register Ticket, :sort_order => "ticket_priority_id_desc" do
       @ticket = Ticket.find_by_url! params[:id]
     end
     def scoped_collection
-      end_of_association_chain.accessible_by(current_ability)
+      chain = end_of_association_chain.accessible_by(current_ability)
+      chain = chain.where(projects: { completed: false }) if @project.nil?
+      chain
     end
     def new
       redirect_to(tickets_path, alert: "You are not allowed to access this page.") and return if params[:project_id].blank?
