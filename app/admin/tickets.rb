@@ -269,7 +269,7 @@ ActiveAdmin.register Ticket, :sort_order => "ticket_priority_id_desc" do
     end
     def scoped_collection
       chain = end_of_association_chain.accessible_by(current_ability)
-      chain = chain.where(projects: { completed: false }) if @project.nil?
+      chain = chain.includes(:project).where(projects: { completed: false }) if @project.nil?
       chain
     end
     def new
