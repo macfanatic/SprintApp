@@ -2,10 +2,9 @@ Timetracker::Application.routes.draw do
   
   post '/calendar/filter', :to => 'calendar#set_filters', :as => 'filter_calendar'    
   get '/calendar/events', :to => 'calendar#events', :as => 'calendar_events'
-      
-  ActiveAdmin.routes(self)
 
-  devise_for :admin_users, ActiveAdmin::Devise.config  
+  devise_for :admin_users, ActiveAdmin::Devise.config        
+  ActiveAdmin.routes(self)
   
   devise_scope :admin_user do
     get '/logout', :to => 'active_admin/devise/sessions#destroy', :as => "destroy_admin_user_session"
