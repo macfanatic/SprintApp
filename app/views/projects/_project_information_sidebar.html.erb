@@ -15,13 +15,13 @@
 		<tr>
 			<th>Hours / Person</th>
 			<% hours = (total_hours.to_f / num_assignees.to_f) rescue 0.0 %>
-			<% hours = 0.0 if hours.nan? %>
+			<% hours = 0.0 if hours.nan? or hours.infinite? %>
 			<td><span class="status <%= colorize_hours_per_team_member_for_sprint(hours) %>"><%= number_to_human(hours) %></span></td>
 		</tr>
 		<tr>
 			<th>Tickets / Person</th>
 			<% hours = (tickets.count.to_f / num_assignees) rescue 0.0 %>
-			<% hours = 0.0 if hours.nan? %>
+			<% hours = 0.0 if hours.nan? or hours.infinite? %>
 			<td><%= number_to_human(hours) %></td>
 		</tr>
 		<tr>
