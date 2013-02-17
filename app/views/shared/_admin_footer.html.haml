@@ -14,4 +14,4 @@
 			%li= link_to "Logout", destroy_admin_user_session_path
 		= form_tag switch_projects_path do
 			= label_tag :id, "Switch Project:"
-			= select_tag :id, options_from_collection_for_select(Project.active.accessible_by(current_ability).includes(:client).reorder("lower(clients.name) asc, lower(projects.name) asc"), :url, :switcher_name, (@project.url rescue nil)), onchange: "$(this).closest('form').submit();"
+			= select_tag :id, options_from_collection_for_select(Project.active.accessible_by(current_ability).includes(:client).reorder("lower(clients.name) asc, lower(projects.name) asc"), :url, :switcher_name, (@project.url rescue nil)), onchange: "if ( $(this).val() != '' ) $(this).closest('form').submit();", prompt: "Choose Project..."
