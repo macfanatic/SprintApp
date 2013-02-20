@@ -26,7 +26,7 @@ class Project < ActiveRecord::Base
   validates :client, :presence => true
   validates :hourly_rate, :presence => true, :numericality => { :greater_than_or_equal_to => 0 }
     
-  delegate :name, :to => :client, :prefix => true
+  delegate :name, :to => :client, :prefix => true, :allow_nil => true
   
   after_initialize :set_default_values
   before_validation :determine_hourly_rate
