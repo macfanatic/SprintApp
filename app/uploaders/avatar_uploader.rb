@@ -2,7 +2,7 @@
 
 class AvatarUploader < CarrierWave::Uploader::Base
 
-  include CarrierWave::RMagick
+  include CarrierWave::MiniMagick
   
   # For Heroku  
   def cache_dir 
