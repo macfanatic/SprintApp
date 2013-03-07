@@ -20,7 +20,7 @@ gem 'settingslogic'
 
 # Assets
 gem 'carrierwave'
-gem 'rmagick'
+gem 'mini_magick'
 
 # Validation helpers
 gem 'validates_as_email_address'
