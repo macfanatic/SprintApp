@@ -55,7 +55,7 @@ ActiveAdmin.register Ticket, :sort_order => "ticket_priority_id_desc" do
     @statuses = TicketStatus.all
     @categories = TicketCategory.all
     @priorities = TicketPriority.all
-    @prompt = "&raquo; No Change &laquo;"
+    @prompt = "No Change"
     render 'multiple_edit_form'
   end
   
