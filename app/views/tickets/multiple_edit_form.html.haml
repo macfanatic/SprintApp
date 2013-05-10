@@ -23,6 +23,6 @@
 	%fieldset.buttons
 		%ol
 			%li.commit.button
-				= submit_tag "Update Tickets", disable_with: "Saving..."
+				= submit_tag "Update Tickets", disable_with: "Saving...", data: { confirm: "Update these tickets?" }
 			%li.cancel
 				= link_to "Cancel", collection_path
