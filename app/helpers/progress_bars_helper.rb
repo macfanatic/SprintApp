@@ -31,6 +31,7 @@ module ProgressBarsHelper
   def progress_indicator(percent, desired, show_progress=true)
     progress_label = show_progress ? '<span class="percent">%d%%</span>' % percent : nil
     capped_progress = [100, percent].min
+    desired = [100, desired].min
     if percent < desired
       ('<div class="progress-indicator"><span class="progress grey" style="width:%d%%;"></span><span class="progress red" style="width:%d%%"></span>%s</div>' % [desired, capped_progress, progress_label]).html_safe
     else
@@ -41,6 +42,7 @@ module ProgressBarsHelper
   def budget_progress_indicator(actual, estimated, show_progress=true)
     progress_label = show_progress ? '<span class="percent">%d%%</span>' % actual : nil
     capped_actual = [100, actual].min
+    estimated = [100, estimated].min
     if actual < estimated
       ('<div class="progress-indicator"><span class="progress light-green" style="width:%d%%;"></span><span class="progress green" style="width:%d%%"></span>%s</div>' % [estimated, capped_actual, progress_label]).html_safe
     else
