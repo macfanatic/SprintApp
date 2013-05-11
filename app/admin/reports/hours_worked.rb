@@ -11,9 +11,15 @@ ActiveAdmin.register_page "HoursWorkedReport" do
     @end = Date.parse(params[:end]).to_date
     @page_title = "Hours Worked Report"
 
+    if ActiveRecord::Base.connection.adapter_name.downcase.start_with? 'mysql'
+      cast_str = 'UNSIGNED'
+    else
+      cast_str = 'INTEGER'
+    end
+
     @comments = {}
     (@start..@end).each do |date|
-      @comments[date] = TicketComment.created_by(params[:employee_id]).where("DATE(ticket_comments.created_at) = ? AND ticket_comments.time > 0", date).joins("LEFT OUTER JOIN versions ON versions.id = ticket_comments.version_id LEFT OUTER JOIN admin_users ON CAST(versions.whodunnit as INTEGER) = admin_users.id").order("lower(admin_users.first_name) asc, lower(admin_users.last_name) asc").group("admin_users.first_name, admin_users.last_name, versions.whodunnit").sum(:time)
+      @comments[date] = TicketComment.created_by(params[:employee_id]).where("DATE(ticket_comments.created_at) = ? AND ticket_comments.time > 0", date).joins("LEFT OUTER JOIN versions ON versions.id = ticket_comments.version_id LEFT OUTER JOIN admin_users ON CAST(versions.whodunnit as #{cast_str}) = admin_users.id").order("lower(admin_users.first_name) asc, lower(admin_users.last_name) asc").group("admin_users.first_name, admin_users.last_name, versions.whodunnit").sum(:time)
     end
     
     @total_time = TicketComment.created_by(params[:employee_id]).where("DATE(ticket_comments.created_at) BETWEEN ? AND ?", @start, @end).sum(:time)
