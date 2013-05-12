@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'actionpack', '3.2.13' # added b/c google_charts gem isn't being a good citizen in gemspec
 
-gem 'pg'	
+gem 'pg'  
 gem 'foreman'
 gem 'thin'
 
@@ -18,6 +18,11 @@ gem 'haml'
 gem 'paper_trail'
 gem 'stringex'
 gem 'settingslogic'
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
 
 # Assets
 gem 'carrierwave'
