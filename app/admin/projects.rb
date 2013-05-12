@@ -71,7 +71,7 @@ ActiveAdmin.register Project, :sort_order => "number_asc" do
       attributes_table_for resource do
         row :number
         row :name
-        row :client
+        row(:client) { link_to resource.client.display_name, [active_admin_namespace.name, resource.client] }
         row(:hourly_rate) { number_to_currency resource.hourly_rate } unless current_admin_user.employee?
         row :start_date do
           resource.start_date.humanize
