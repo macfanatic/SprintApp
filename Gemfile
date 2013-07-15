@@ -19,8 +19,6 @@ gem 'paper_trail'
 gem 'stringex'
 gem 'settingslogic'
 
-gem 'mysql2'
-
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
