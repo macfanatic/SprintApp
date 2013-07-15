@@ -22,6 +22,7 @@ gem 'settingslogic'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'rspec-rails'
 end
 
 # Assets
@@ -45,6 +46,8 @@ gem 'jquery-rails'
 group :test do
   # Pretty printed test output
   gem 'turn', '0.8.2', :require => false
+  gem 'rspec-rails'
+  gem 'factory_girl'
 end
 
 # Charting

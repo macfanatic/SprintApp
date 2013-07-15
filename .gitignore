@@ -20,3 +20,7 @@ public/assets/**
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# Ignore unwanted file created by vim and rspec
+*.swp
+.rspec
