@@ -18,6 +18,7 @@ gem 'haml'
 gem 'paper_trail'
 gem 'stringex'
 gem 'settingslogic'
+gem 'mysql2'
 
 group :development do
   gem 'better_errors'
