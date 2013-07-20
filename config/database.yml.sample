@@ -10,6 +10,7 @@ development:
 test:
   <<: *pg
   database: sprint_app_test
+  user: postgres
 
 cucumber:
   <<: *pg

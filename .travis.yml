@@ -1,0 +1,15 @@
+language: ruby
+script: bundle exec rake spec
+rvm:
+  - 1.9.3
+  - 2.0.0
+before_script:
+  - cp config/database.yml.sample config/database.yml
+  - psql -c 'create database sprint_app_test;' -U postgres
+before_install:
+  - gem update --system
+  - gem --version
+  - gem install bundler
+matrix:
+  allow_failures:
+    - rvm: 2.0.0
