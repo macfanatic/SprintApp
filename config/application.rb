@@ -50,6 +50,16 @@ module Timetracker
     config.assets.version = '1.0'
     
     config.assets.initialize_on_precompile = false
+
+    config.generators do |g|
+      g.stylesheets false
+      g.javascripts false
+      g.controller :test_framework => false, :helper => false, :assets => false
+      g.view_specs false
+      g.helper_specs false
+      g.test_framework :rspec
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
+    end
     
   end
 end
