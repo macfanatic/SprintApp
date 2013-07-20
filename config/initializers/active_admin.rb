@@ -106,3 +106,5 @@ ActiveAdmin.setup do |config|
   config.view_factory.footer = SprintApp::Footer
     
 end
+
+ActiveAdmin::Resource.send :include, SprintApp::ResourceExtensions
