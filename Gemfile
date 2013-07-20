@@ -49,6 +49,7 @@ group :test do
   gem 'rspec-rails'
   gem 'factory_girl'
   gem 'shoulda-matchers'
+  gem 'rake'
 end
 
 # Charting
