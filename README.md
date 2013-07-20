@@ -69,7 +69,7 @@ SprintApp is designed to run in the cloud or on dedicated hardware, whatever you
 ```
 	$> git clone git://github.com/macfanatic/SprintApp.git sprint_app
 	$> cd sprint_app
-	$> mate config/database.yml
+	$> cp config/database.yml.sample config/database.yml
 	$> bundle install --without production
 	$> bundle exec rake db:setup
 	$> bundle exec foreman start
