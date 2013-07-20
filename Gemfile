@@ -48,6 +48,7 @@ group :test do
   gem 'turn', '0.8.2', :require => false
   gem 'rspec-rails'
   gem 'factory_girl'
+  gem 'shoulda-matchers'
 end
 
 # Charting
