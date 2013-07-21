@@ -4,7 +4,7 @@ class TicketCategory < ActiveRecord::Base
   
   default_scope order("lower(name) asc")
   
-  validates :name, :presence => true
+  validates :name, :presence => true, uniqueness: true
   
   def display_name
     name
