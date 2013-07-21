@@ -4,7 +4,7 @@ class TicketTimer < ActiveRecord::Base
   belongs_to :ticket
   has_one :project, through: :ticket
   
-  scope :created_by, lambda { |user| where admin_user_id: user.id }
+  scope :created_by, ->(u) { where admin_user_id: u.id }
   
   def elapsed_time
     Time.zone.now - created_at.to_time
