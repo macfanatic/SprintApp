@@ -51,6 +51,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'rake'
   gem 'faker'
+  gem 'timecop'
 end
 
 # Charting

@@ -14,4 +14,14 @@ describe TicketTimer do
     end
   end
 
+  describe '#elapsed_time' do
+    subject(:timer) { create(:ticket_timer) }
+    before { timer } # ensure time is created before we tamper with time
+
+    it 'should calculate to 30 minutes' do
+      Timecop.travel(30.minutes.from_now)
+      timer.readable_elapsed.should == "00:30"
+    end
+  end
+
 end
