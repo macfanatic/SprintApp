@@ -30,7 +30,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 
 # Validation helpers
-gem 'validates_as_email_address'
+gem 'spectator-validates_email', :require => 'validates_email'
 gem 'date_validator'
 
 # Gems used only for assets and not required
@@ -50,6 +50,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
   gem 'rake'
+  gem 'faker'
 end
 
 # Charting

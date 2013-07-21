@@ -5,7 +5,7 @@ class Client < ActiveRecord::Base
   has_many :projects, :dependent => :nullify
   has_many :contacts, :dependent => :destroy
   
-  validates :name, :presence => true
+  validates :name, :presence => true, uniqueness: true
   validates :hourly_rate, :presence => true, :numericality => { :greater_than_or_equal_to => 0 }
   
   scope :sorted, order("lower(clients.name) asc")

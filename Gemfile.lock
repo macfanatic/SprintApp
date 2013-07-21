@@ -89,6 +89,8 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
+    faker (1.1.2)
+      i18n (~> 0.5)
     fastercsv (1.5.4)
     foreman (0.41.0)
       thor (>= 0.13.6)
@@ -180,6 +182,8 @@ GEM
     settingslogic (2.0.8)
     shoulda-matchers (2.2.0)
       activesupport (>= 3.0.0)
+    spectator-validates_email (0.2.0)
+      activemodel (>= 3.0.0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -205,7 +209,6 @@ GEM
     uglifier (1.2.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
-    validates_as_email_address (0.2.4)
     warden (1.1.1)
       rack (>= 1.0)
 
@@ -223,6 +226,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   date_validator
   factory_girl_rails
+  faker
   foreman
   google_charts
   haml
@@ -237,9 +241,9 @@ DEPENDENCIES
   sass-rails
   settingslogic
   shoulda-matchers
+  spectator-validates_email
   stringex
   therubyracer
   thin
   turn (= 0.8.2)
   uglifier (>= 1.0.3)
-  validates_as_email_address
