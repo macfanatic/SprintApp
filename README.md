@@ -59,6 +59,8 @@ SprintApp is built upon the following great community gems:
 ### Installation
 SprintApp is designed to run in the cloud or on dedicated hardware, whatever your organization is the most comfortable with. If you are looking for a hosting solution, we recommend [Heroku](http://www.heroku.com) for Rails hosting.
 
+**SprintApp currently only works with Ruby 1.9.3, Ruby 2.0 is not supported at this time**
+
 1. Clone the repo to your computer or server
 2. Configure your database for use with the Rails app
 3. Run bundler
