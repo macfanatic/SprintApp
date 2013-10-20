@@ -18,7 +18,7 @@ ActiveAdmin.register TicketCategory, :sort_order => "name_asc" do
   form :partial => "form"
   
   show :title => :display_name do
-    panel "Priority Details" do
+    panel "Category Details" do
       attributes_table_for resource do
         row :name
       end
