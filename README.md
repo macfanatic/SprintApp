@@ -1,6 +1,14 @@
 # SprintApp
 [![Build Status](https://travis-ci.org/macfanatic/SprintApp.png)](https://travis-ci.org/macfanatic/SprintApp)
 
+
+## DEPRECATED
+This project has not seen any community contributions for a year now, and I have not had time for the project, or the need, for an even longer period of time.
+
+If you're interested in becoming a contributor, please hit me up on twitter at [@macfanatic](https://twitter.com/macfanatic)
+
+## Overview
+
 Project management and time tracking should be easy. SprintApp is simple to use so you can focus on running your business and focus on what you do best.  [Redmine](http://www.redmine.org) is great for some teams, but we think it's difficult to use and doesn't look that great.  SprintApp aims to solve those issues and more!
 
 ## Features
