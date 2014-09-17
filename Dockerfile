@@ -3,15 +3,17 @@
 # VERSION       1.0
 
 # ~~~~ Image base ~~~~
-FROM litaio/ruby
+FROM zedtux/ruby-1.9.3
 MAINTAINER zedtux, zedtux@zedroot.org
 
 
 # ~~~~ OS Maintenance ~~~~
 # Keep up-to-date the container OS
-RUN apt-get update && apt-get upgrade -y
-# Install required header files for PostgreSQL in order to install pg gem
-RUN apt-get install -y libpq-dev
+RUN apt-get update && \
+  apt-get upgrade -y && \
+  apt-get install -y git \
+    libpq-dev \
+    build-essential
 
 
 # ~~~~ Rails Preparation ~~~~
@@ -28,7 +30,11 @@ RUN mkdir -p /sprintapp/bundler/
 ADD Gemfile /sprintapp/bundler/Gemfile
 ADD Gemfile.lock /sprintapp/bundler/Gemfile.lock
 WORKDIR /sprintapp/bundler/
+
+RUN bundle config build.eventmachine "--with-cflags=\"-O2 -pipe -march=native -w\""
+RUN bundle config build.thin "--with-cflags=\"-O2 -pipe -march=native -w\""
 RUN bundle --deployment --without development test
+
 # ~~~~ Sources Preparation ~~~~
 # Prepare application source folder
 RUN mkdir /sprintapp/application/
@@ -36,10 +42,13 @@ WORKDIR /sprintapp/application/
 # Import the source code (look at the .dockerignore file)
 ADD . /sprintapp/application/
 
-RUN bundle exec rake assets:precompile RAILS_ENV=production
+RUN ls -al
+RUN bundle exec gem list
 
 EXPOSE 3000
 
 # Run the Rails server
 # CMD bundle exec rake db:setup
-ENTRYPOINT bundle exec rails server thin
+# ENTRYPOINT bundle exec rails server thin
+
+# CMD bundle exec rails server thin
