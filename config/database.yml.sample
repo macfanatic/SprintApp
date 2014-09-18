@@ -2,6 +2,7 @@ pg: &pg
   adapter: postgresql
   encoding: unicode
   pool: 5
+  username: sprintapp
 
 development:
   <<: *pg
