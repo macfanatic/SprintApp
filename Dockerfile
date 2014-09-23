@@ -58,7 +58,7 @@ RUN echo "\nproduction:"  >> config/database.yml && \
     echo "  <<: *pg"  >> config/database.yml && \
     echo "  username: <%= ENV['DB_USERNAME'] %>"  >> config/database.yml && \
     echo "  password: <%= ENV['DB_PASSWORD'] %>" >> config/database.yml && \
-    echo "  database: <%= ENV['$DATABASE_NAME'] %>\n" >> config/database.yml
+    echo "  database: <%= ENV['DATABASE_NAME'] %>\n" >> config/database.yml
 RUN cat config/database.yml
 
 RUN bundle config build.eventmachine "--with-cflags=\"-O2 -pipe -march=native -w\""
