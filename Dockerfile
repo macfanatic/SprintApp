@@ -7,9 +7,10 @@ FROM zedtux/ruby-1.9.3
 MAINTAINER zedtux, zedtux@zedroot.org
 
 ENV POSTGRESQL_VERSION 9.3
-ENV USERNAME sprintapp
-ENV DB_PASSWORD ''
-ENV DATABASE_NAME 'sprint_app_development'
+ENV DB_USERNAME sprintapp
+ENV DB_PASSWORD sprintapp
+ENV DATABASE_NAME sprint_app_development
+ENV RAILS_ENV production
 
 # ~~~~ PostgreSQL ~~~~
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
@@ -27,13 +28,13 @@ RUN apt-get update && apt-get install -y python-software-properties \
 USER postgres
 # Enable listening on all network devises
 RUN sed -i -e "s/.*listen_addresses.*/listen_addresses = '*'/g" /etc/postgresql/$POSTGRESQL_VERSION/main/postgresql.conf
-# Use md5 authentication mechanism for all IPv4 connections
-RUN echo "host\tall\tall\t0.0.0.0/0\tmd5" >> /etc/postgresql/$POSTGRESQL_VERSION/main/pg_hba.conf
-RUN echo "local\tall\tall\t\tmd5" >> /etc/postgresql/$POSTGRESQL_VERSION/main/pg_hba.conf
+# Use md5 authentication mechanism for local connections
+RUN sed -i 's/local   all             all                                     peer/local   all             all                                     md5/' /etc/postgresql/$POSTGRESQL_VERSION/main/pg_hba.conf
+RUN cat /etc/postgresql/$POSTGRESQL_VERSION/main/pg_hba.conf
+
 # Start PostgreSQL and update postgres user in order to remove the password
 RUN /etc/init.d/postgresql start && \
-    psql --command "CREATE USER $USERNAME WITH ENCRYPTED PASSWORD '$DB_PASSWORD';" && \
-    createdb --owner=$USERNAME --template=template0 --encoding=UTF8 $DATABASE_NAME
+    psql --command "CREATE USER $DB_USERNAME WITH CREATEDB ENCRYPTED PASSWORD '$DB_PASSWORD';"
 
 USER root
 
@@ -51,8 +52,14 @@ RUN mkdir -p /sprintapp/
 WORKDIR /sprintapp/
 # Import the source code (look at the .dockerignore file)
 ADD . /sprintapp/
-# Copy default database config file
+# Copy default database config file and update it
 RUN cp config/database.yml.sample config/database.yml
+RUN echo "\nproduction:"  >> config/database.yml && \
+    echo "  <<: *pg"  >> config/database.yml && \
+    echo "  username: <%= ENV['DB_USERNAME'] %>"  >> config/database.yml && \
+    echo "  password: <%= ENV['DB_PASSWORD'] %>" >> config/database.yml && \
+    echo "  database: <%= ENV['$DATABASE_NAME'] %>\n" >> config/database.yml
+RUN cat config/database.yml
 
 RUN bundle config build.eventmachine "--with-cflags=\"-O2 -pipe -march=native -w\""
 RUN bundle config build.thin "--with-cflags=\"-O2 -pipe -march=native -w\""
@@ -62,5 +69,5 @@ EXPOSE 3000
 
 # Run the Rails server
 ENTRYPOINT /etc/init.d/postgresql start && \
-  bundle exec rake db:setup && \
+  bundle exec rake db:create db:setup && \
   bundle exec rails server thin
