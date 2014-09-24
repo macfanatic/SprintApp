@@ -69,6 +69,10 @@ RUN bundle exec rake assets:precompile && \
     /etc/init.d/postgresql start && \
     bundle exec rake db:create db:setup
 
+# Ensure PostgreSQL permissions are correct
+RUN chmod 750 /etc/ssl/private/ && \
+    chmod 640 /etc/ssl/private/ssl-cert-snakeoil.key
+
 EXPOSE 3000
 
 # Run the Rails server
