@@ -50,6 +50,8 @@ RUN mkdir -p /sprintapp/
 WORKDIR /sprintapp/
 # Import the source code (look at the .dockerignore file)
 ADD . /sprintapp/
+# Fix Rails assets access
+RUN sed -i "s/config.assets.compile = false/config.assets.compile = true/" config/environments/$RAILS_ENV.rb
 # Copy default database config file and update it
 RUN cp config/database.yml.sample config/database.yml && \
     echo "\nproduction:"  >> config/database.yml && \
