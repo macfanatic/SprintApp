@@ -9,7 +9,7 @@ class Contact < ActiveRecord::Base
   validates :email, email: true, presence: true
   
   validates :phone, presence: true
-  validates :phone, format: { with: /\d{7,10}/, message: "not a valid phone number" }, if: -> { phone.present? }
+  validates :phone, format: { with: /\d{7,10}/, message: "not a valid phone number" }, if: ->(contact) { contact.phone.present? }
   validates :cell, format: { with: /\d{7,10}/, message: "not a valid phone number" }, allow_blank: true
       
   def phone=(val)
